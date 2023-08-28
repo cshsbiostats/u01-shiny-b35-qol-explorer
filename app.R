@@ -58,8 +58,7 @@ main <- layout_sidebar(
       icon = icon(name = 'chart-bar', lib = 'font-awesome')
     )
   ),
-  card(full_screen = TRUE, card_header("Sankey Diagram"), card_body(class = "p-0", plotOutput('sankey_plot'))),
-  card(full_screen = TRUE, card_header("Summary Description"), card_body(htmlOutput('summary_descr')))
+  card(full_screen = TRUE, card_header("Results"), card_body(class = "p-0", plotOutput('sankey_plot')), card_body(htmlOutput('summary_descr')))
 )
 
 ui <- page_fillable(
