@@ -5,7 +5,7 @@ account: mluu921
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9611264
-bundleId: 7618139
+bundleId: 8286031
 url: https://mluu921.shinyapps.io/u01-shiny-b35-qol-explorer/
 version: 1
 asMultiple: FALSE
