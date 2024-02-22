@@ -62,6 +62,7 @@ main <- layout_sidebar(
 )
 
 ui <- page_fillable(
+  theme = bs_theme(version = 5, preset = "shiny"),
   main
 )
 
