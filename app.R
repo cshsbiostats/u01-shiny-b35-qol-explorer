@@ -28,7 +28,7 @@ sidebar_layout <- sidebar(
     label = tooltip(
       span("1. Select Treatment",
            bs_icon("info-circle")),
-      "The following dropdown allows you to select the treatment of interest; Anastrozole, or Tamoxifen",
+      "Please select the treatment of interest; Anastrozole, or Tamoxifen",
       placement = "right"
     ),
     choices = trt_options
