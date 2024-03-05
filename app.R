@@ -28,7 +28,7 @@ sidebar_layout <- sidebar(
     label = tooltip(
       span("1. Select Treatment",
            bs_icon("info-circle")),
-      "Please select the treatment of interest; Anastrozole, or Tamoxifen",
+      "This dropdown selects the treatment of interest at the starting timeframe.",
       placement = "right"
     ),
     choices = trt_options
@@ -38,7 +38,7 @@ sidebar_layout <- sidebar(
     label = tooltip(
       span("2. Select Description",
            bs_icon("info-circle")),
-      "Please select the QOL description of interest for the cohort of interest.",
+      "This dropdown selects the QOL description of the cohort of interest at the initial starting timeframe",
       placement = "right"
     ),
     choices = desc_options
@@ -48,7 +48,7 @@ sidebar_layout <- sidebar(
     label = tooltip(
       span("3. Response",
            bs_icon("info-circle")),
-      "Please select the QOL description of interest for the cohort of interest.",
+      "This dropdown selects the response for the QOL description for the cohort of interest at the initial starting timeframe",
       placement = "right"
     ),
     choices = resp_options
@@ -58,7 +58,7 @@ sidebar_layout <- sidebar(
     label = tooltip(
       span("4. Timeframe",
            bs_icon("info-circle")),
-      "Please select the QOL description of interest for the cohort of interest.",
+      "This slider selects the initial and end timeframe in months for the cohort of interest to visualize.",
       placement = "right"
     ),
     min = 0,
@@ -96,14 +96,14 @@ main <- layout_sidebar(
     card_body(
       "The following application allows you to visualize the PRO-CTCAE QOL data in a Sankey diagram format. The Sankey diagram is a useful tool for visualizing the flow of patients between different timepoint of interest. The following application allows you to select the treatment, QOL description, and response of the cohort of interest at a specified timepoint. We can then observe the flow and responses of the patients across the various timepoints."
     ),
-    max_height = '200px'
+    max_height = '250px'
   ),
   card(
     full_screen = TRUE,
     card_header("Results"),
     card_body(class = "p-0", plotOutput('sankey_plot')),
     card_body(htmlOutput('summary_descr'), max_height = '300px'),
-    height = '800px'
+    height = '750px'
   )
 )
 
