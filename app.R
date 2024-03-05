@@ -96,13 +96,13 @@ main <- layout_sidebar(
     card_body(
       "The following application allows you to visualize the PRO-CTCAE QOL data in a Sankey diagram format. The Sankey diagram is a useful tool for visualizing the flow of patients between different timepoint of interest. The following application allows you to select the treatment, QOL description, and response of the cohort of interest at a specified timepoint. We can then observe the flow and responses of the patients across the various timepoints."
     ),
-    height = '200px'
+    max_height = '200px'
   ),
   card(
     full_screen = TRUE,
     card_header("Results"),
     card_body(class = "p-0", plotOutput('sankey_plot')),
-    card_body(htmlOutput('summary_descr')),
+    card_body(htmlOutput('summary_descr'), max_height = '300px'),
     height = '800px'
   )
 )
