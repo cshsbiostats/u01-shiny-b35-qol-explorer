@@ -3,6 +3,7 @@ library(shiny)
 library(bslib)
 library(ggsankey)
 library(patchwork)
+library(bsicons)
 
 data <- read_csv(here::here('data/processed_full_qol_pro_data.csv'),
                  show_col_types = FALSE)
@@ -21,44 +22,89 @@ resp_options <- data |>
   unique() |> 
   sort()
 
+sidebar_layout <- sidebar(
+  selectInput(
+    inputId = 'select_trt',
+    label = tooltip(
+      span("1. Select Treatment",
+           bs_icon("info-circle")),
+      "The following dropdown allows you to select the treatment of interest; Anastrozole, or Tamoxifen",
+      placement = "right"
+    ),
+    choices = trt_options
+  ),
+  selectInput(
+    inputId = 'select_desc',
+    label = tooltip(
+      span("2. Select Description",
+           bs_icon("info-circle")),
+      "Please select the QOL description of interest for the cohort of interest.",
+      placement = "right"
+    ),
+    choices = desc_options
+  ),
+  selectInput(
+    inputId = 'select_resp',
+    label = tooltip(
+      span("3. Response",
+           bs_icon("info-circle")),
+      "Please select the QOL description of interest for the cohort of interest.",
+      placement = "right"
+    ),
+    choices = resp_options
+  ),
+  sliderInput(
+    inputId = 'select_timeframe',
+    label = tooltip(
+      span("4. Timeframe",
+           bs_icon("info-circle")),
+      "Please select the QOL description of interest for the cohort of interest.",
+      placement = "right"
+    ),
+    min = 0,
+    max = 60,
+    value = c(0, 12),
+    step = 6
+  ),
+  actionButton(
+    'btn_ae_visualize',
+    tooltip(
+      span("Visualize",
+           bs_icon("info-circle")),
+      "Clicking on the following button will generate a Sankey diagram and summary statement based upon the selected patient cohort.",
+      placement = "right"
+    ),
+    icon = icon(name = 'chart-bar', lib = 'font-awesome')
+  ),
+  downloadButton(
+    'report',
+    tooltip(
+      span("Download Report",
+           bs_icon("info-circle")),
+      "Clicking on the following button will generate a PDF report containing the Sankey diagrams and summary statement based upon the select patient cohort.",
+      placement = "right"
+    ),
+    icon = icon(name = 'chart-bar', lib = 'font-awesome')
+  )
+)
+
 main <- layout_sidebar(
   fillable = TRUE,
-  sidebar = sidebar(
-    selectInput(
-      inputId = 'select_trt',
-      label = '1. Select Treatment',
-      choices = trt_options
+  sidebar = sidebar_layout,
+  card(
+    card_header("PRO-CTCAE QOL Sankey Diagrams"),
+    card_body(
+      "The following application allows you to visualize the PRO-CTCAE QOL data in a Sankey diagram format. The Sankey diagram is a useful tool for visualizing the flow of patients between different timepoint of interest. The following application allows you to select the treatment, QOL description, and response of the cohort of interest at a specified timepoint. We can then observe the flow and responses of the patients across the various timepoints."
     ),
-    selectInput(
-      inputId = 'select_desc',
-      label = '2. Select Description',
-      choices = desc_options
-    ),
-    selectInput(
-      inputId = 'select_resp',
-      label = '3. Select Response',
-      choices = resp_options
-    ),
-    sliderInput(
-      inputId = 'select_timeframe',
-      label = '4. Select Timeframe',
-      min = 0,
-      max = 60,
-      value = c(0, 12),
-      step = 6
-    ),
-    actionButton(
-      'btn_ae_visualize',
-      'Visualize',
-      icon = icon(name = 'chart-bar', lib = 'font-awesome')
-    ),
-    downloadButton(
-      'report',
-      'Download Report',
-      icon = icon(name = 'chart-bar', lib = 'font-awesome')
-    )
+    height = '100px'
   ),
-  card(full_screen = TRUE, card_header("Results"), card_body(class = "p-0", plotOutput('sankey_plot')), card_body(htmlOutput('summary_descr')))
+  card(
+    full_screen = TRUE,
+    card_header("Results"),
+    card_body(class = "p-0", plotOutput('sankey_plot')),
+    card_body(htmlOutput('summary_descr')),
+    height = '700px'
+  )
 )
 
 ui <- page_fillable(
