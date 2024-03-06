@@ -52,13 +52,17 @@ make_qol_sankey <- \(data, selected_treatment, selected_description, selected_ti
   })
   
   plot <- local({
+    
+    cbf_1 <- c("#999999", "#E69F00", "#56B4E9", "#009E73", 
+               "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+    
     grade_colors <- c(
-      'No response' = "#1F77B4FF",
-      'Not at all' = "#2CA02CFF",
-      'Slightly' = "#BCBD22FF",
-      'Moderately' = "#FF7F0EFF",
-      'Quite a bit' = "#D62728FF",
-      'Extremely' = "#7F7F7FFF"
+      'No response' = "#999999",
+      'Not at all' = "#E69F00",
+      'Slightly' = "#56B4E9",
+      'Moderately' = "#009E73",
+      'Quite a bit' = "#D55E00",
+      'Extremely' = "#F0E442"
     )
     
     plot_data <- plot_data |>
